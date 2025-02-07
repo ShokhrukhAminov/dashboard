@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Информационная панель ученика</title>
-  <!-- Include Chart.js from CDN -->
+  <!-- Include Chart.js and the Data Labels plugin from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Include Chart.js Data Labels Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     /* Basic Reset & Styling */
@@ -247,6 +246,9 @@
 
   <!-- JavaScript to Render Charts -->
   <script>
+    // Register the Data Labels plugin
+    Chart.register(ChartDataLabels);
+
     // Grades Chart (Bar Chart)
     const gradesCtx = document.getElementById('gradesChart').getContext('2d');
     const gradesChart = new Chart(gradesCtx, {
@@ -282,9 +284,6 @@
       }
     });
 
-    // Register the Data Labels plugin (if necessary)
-    Chart.register(ChartDataLabels);
-
     // Attendance Chart (Pie Chart) with additional category "Несвоевременный уход"
     const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
     const attendanceChart = new Chart(attendanceCtx, {
@@ -303,9 +302,9 @@
           backgroundColor: [
             'rgba(46, 204, 113, 0.7)',  // Приход вовремя - green
             'rgba(231, 76, 60, 0.7)',   // Приход с опозданием - red
-            'rgba(52, 152, 219, 0.7)',  // Уход вовремя - blue
-            'rgba(241, 196, 15, 0.7)',  // Уход с опозданием - yellow
-            'rgba(155, 89, 182, 0.7)'   // Несвоевременный уход - purple
+            'rgba(52, 152, 219, 0.7)',   // Уход вовремя - blue
+            'rgba(241, 196, 15, 0.7)',   // Уход с опозданием - yellow
+            'rgba(155, 89, 182, 0.7)'    // Несвоевременный уход - purple
           ],
           borderColor: [
             'rgba(46, 204, 113, 1)',
@@ -319,8 +318,8 @@
       },
       options: {
         plugins: {
-          // Always show data labels on the pie slices
           datalabels: {
+            display: true,   // Force the labels to be visible
             color: '#fff',
             font: {
               weight: 'bold',
@@ -330,7 +329,6 @@
               return value;
             }
           },
-          // Optionally disable tooltips if you don't want them
           tooltip: { enabled: false }
         },
         responsive: true,
