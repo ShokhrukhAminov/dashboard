@@ -38,10 +38,11 @@
       color: #2c3e50;
       animation: slideInLeft 1s ease-out;
     }
+    /* Reduced the profile image size by 20% (from 150px to 120px) */
     .header img {
       border-radius: 50%;
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       border: 3px solid #3498db;
       transition: transform 0.3s ease;
@@ -139,9 +140,10 @@
         flex-direction: column;
         text-align: center;
       }
+      /* 20% reduction applied: 120px * 0.8 = 96px */
       .header img {
-        width: 120px;
-        height: 120px;
+        width: 96px;
+        height: 96px;
         margin-bottom: 10px;
       }
       .section h2 {
@@ -159,9 +161,10 @@
       .header h1 {
         font-size: 24px;
       }
+      /* Further reduce for mobile: 96px * 0.8 ≈ 80px */
       .header img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
       }
       .info {
         grid-template-columns: 1fr;
