@@ -280,26 +280,34 @@
       }
     });
 
-    // Attendance Chart (Pie Chart)
+    // Attendance Chart (Pie Chart) with additional category "Несвоевременный уход"
     const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
     const attendanceChart = new Chart(attendanceCtx, {
       type: 'pie',
       data: {
-        labels: ['Приход вовремя', 'Приход с опозданием', 'Уход вовремя', 'Уход с опозданием'],
+        labels: [
+          'Приход вовремя', 
+          'Приход с опозданием', 
+          'Уход вовремя', 
+          'Уход с опозданием',
+          'Несвоевременный уход'
+        ],
         datasets: [{
           label: 'Посещаемость',
-          data: [80, 5, 85, 10],
+          data: [80, 5, 85, 10, 7],
           backgroundColor: [
-            'rgba(46, 204, 113, 0.7)',
-            'rgba(231, 76, 60, 0.7)',
-            'rgba(52, 152, 219, 0.7)',
-            'rgba(241, 196, 15, 0.7)'
+            'rgba(46, 204, 113, 0.7)',  // Приход вовремя - green
+            'rgba(231, 76, 60, 0.7)',   // Приход с опозданием - red
+            'rgba(52, 152, 219, 0.7)',  // Уход вовремя - blue
+            'rgba(241, 196, 15, 0.7)',  // Уход с опозданием - yellow
+            'rgba(155, 89, 182, 0.7)'   // Несвоевременный уход - purple
           ],
           borderColor: [
             'rgba(46, 204, 113, 1)',
             'rgba(231, 76, 60, 1)',
             'rgba(52, 152, 219, 1)',
-            'rgba(241, 196, 15, 1)'
+            'rgba(241, 196, 15, 1)',
+            'rgba(155, 89, 182, 1)'
           ],
           borderWidth: 1
         }]
