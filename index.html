@@ -247,7 +247,7 @@
     // Register the Data Labels plugin
     Chart.register(ChartDataLabels);
     
-    // Grades Chart (Bar Chart) with "%" appended to each value
+    // Grades Chart (Bar Chart) with "%" appended and labels located inside the bars
     const gradesCtx = document.getElementById('gradesChart').getContext('2d');
     const gradesChart = new Chart(gradesCtx, {
       type: 'bar',
@@ -275,22 +275,31 @@
       },
       options: {
         scales: {
-          y: { beginAtZero: true, max: 100 }
+          y: { 
+            beginAtZero: true, 
+            max: 100,
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
+            }
+          }
         },
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           datalabels: {
             display: true,
-            anchor: 'end',
-            align: 'top',
+            anchor: 'center',
+            align: 'center',
             formatter: (value, context) => {
               return value + '%';
             },
             font: {
-              weight: 'bold'
+              weight: 'bold',
+              size: 14
             },
-            color: '#000'
+            color: '#fff'
           }
         }
       }
