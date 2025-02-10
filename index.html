@@ -244,10 +244,10 @@
   
   <!-- JavaScript to Render Charts -->
   <script>
-    // Register the Data Labels plugin so that Chart.js uses it
+    // Register the Data Labels plugin
     Chart.register(ChartDataLabels);
     
-    // Grades Chart (Bar Chart)
+    // Grades Chart (Bar Chart) with "%" appended to each value
     const gradesCtx = document.getElementById('gradesChart').getContext('2d');
     const gradesChart = new Chart(gradesCtx, {
       type: 'bar',
@@ -278,7 +278,21 @@
           y: { beginAtZero: true, max: 100 }
         },
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+          datalabels: {
+            display: true,
+            anchor: 'end',
+            align: 'top',
+            formatter: (value, context) => {
+              return value + '%';
+            },
+            font: {
+              weight: 'bold'
+            },
+            color: '#000'
+          }
+        }
       }
     });
     
@@ -317,10 +331,10 @@
       options: {
         plugins: {
           datalabels: {
-            display: true,       // force the labels to display
+            display: true,
             color: '#fff',
-            align: 'center',     // position the label at the center of the slice
-            anchor: 'center',    // anchor the label to the center
+            align: 'center',
+            anchor: 'center',
             font: {
               weight: 'bold',
               size: 14
